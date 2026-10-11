@@ -239,21 +239,19 @@ for wx in sorted(set(x for x, _ in cracks)):
 if cracks:
     print(f'  石墙总宽 {len(set(x for x, _ in cracks))*TS}px  {"[OK]" if len(set(x for x, _ in cracks))*TS <= BOOM_R*2 else "[!]"}')
 
-# 3b) 升降平台：最高点能不能跳到右边墙上
+# 3b) 升降平台/电梯：升到顶之后附近有没有能落脚的平台
 lifts = [(x, y) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch == 'm']
-print('\n升降平台检查:')
+print('\n电梯检查:')
 for (lx, ly) in lifts:
-    top_high = (ly + 1) * TS - 4 * TS
-    walltop = None
-    for x in range(lx + 1, W):
-        col = [y for y in range(1, H) if rows[y][x] in SOLID and y < GROUND_ROW]
-        if col: walltop = min(col) * TS; break
-    if walltop is None:
-        print(f'  升降机@({lx},{ly}) 右边没墙')
-    else:
-        d = top_high - walltop          # 玩家还要往上跳多少
-        print(f'  升降机@({lx},{ly}) 最高升到 y={top_high}，右边墙顶 y={walltop}，还需再跳 {d}px  '
-              f'{"[OK] 跳得上去" if 0 <= d <= JUMP_H else "[FAIL] 上不去/没意义"}')
+    top_high = (ly + 1) * TS - 6 * TS      # 电梯最高时的轿厢面
+    row_high = ly - 6
+    ok = False
+    for dx in range(-8, 9):
+        for dy in range(-1, 4):
+            if can_stand(lx + dx, row_high + dy):
+                ok = True; break
+        if ok: break
+    print(f'  电梯@({lx},{ly}) 最高升到行 {row_high}  ' + ('[OK] 附近有落脚平台' if ok else '[FAIL] 升上去没地方站'))
 
 # 4) Boss 高台：地面 + 史莱姆弹床是否够高
 boss = [(x, y) for y, r in enumerate(rows) for x, ch in enumerate(r) if ch == 'X']
