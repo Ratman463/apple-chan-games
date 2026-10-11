@@ -112,27 +112,40 @@ kbd{background:#6f5f4b;color:#fff;border:2px solid #4d4033;padding:1px 7px;font-
 }
 .snd-btn.fs-btn{right:80px}
 
-/* ---------- GitHub 求 star 弹窗 ---------- */
+/* ---------- GitHub 求 star 弹窗（居中模态，手机上也一定看得见）---------- */
+.gh-back{position:fixed;inset:0;background:rgba(60,48,34,.5);z-index:58}
+.gh-back.hidden{display:none}
 .gh-pop{
-  position:relative;margin:14px auto 0;max-width:520px;padding:16px 20px 14px;text-align:left;
-  background:rgba(255,251,243,.97);border:3px solid var(--brown);
-  box-shadow:inset 3px 3px 0 var(--cream-hi), inset -3px -3px 0 var(--cream-lo), 0 6px 0 rgba(110,88,60,.2);
-  animation:ghIn .35s cubic-bezier(.2,1.4,.5,1);
+  position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:59;
+  width:min(92vw,470px);padding:20px 22px 18px;text-align:left;
+  background:rgba(255,251,243,.99);border:3px solid var(--brown);
+  box-shadow:inset 3px 3px 0 var(--cream-hi), inset -3px -3px 0 var(--cream-lo), 0 10px 30px rgba(0,0,0,.3);
+  animation:ghIn .3s cubic-bezier(.2,1.4,.5,1);
 }
-@keyframes ghIn{from{transform:translateY(14px) scale(.94);opacity:0}to{transform:none;opacity:1}}
+@keyframes ghIn{from{transform:translate(-50%,-50%) scale(.92);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
 .gh-pop.hidden{display:none}
-.gh-pop p{margin:8px 0 12px;font-size:13px;line-height:1.7;color:#5b4a38}
-.gh-title{font-weight:900;font-size:15px;color:#8a5a12;letter-spacing:1px}
+.gh-pop p{margin:8px 0 14px;font-size:13px;line-height:1.75;color:#5b4a38}
+.gh-title{font-weight:900;font-size:16px;color:#8a5a12;letter-spacing:1px}
 .gh-btn{
-  display:inline-block;padding:9px 18px;background:#4b4033;color:#fff;font-weight:800;font-size:13px;
-  border:3px solid #2f2820;box-shadow:inset -2px -2px 0 rgba(0,0,0,.3), inset 2px 2px 0 rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  padding:12px 18px;background:#24292f;color:#fff;font-weight:800;font-size:15px;letter-spacing:1px;
+  border:3px solid #101418;border-radius:10px;
+  box-shadow:inset -2px -2px 0 rgba(0,0,0,.35), inset 2px 2px 0 rgba(255,255,255,.12);
 }
-.gh-btn:hover{background:#5b4a38}
+.gh-btn svg{width:24px;height:24px;fill:#fff;flex:0 0 auto}
+.gh-btn:active{transform:translateY(2px)}
+.gh-btn:hover{background:#32383f}
 .gh-x{
-  position:absolute;top:6px;right:8px;width:26px;height:26px;font-size:18px;line-height:1;
+  position:absolute;top:8px;right:10px;width:30px;height:30px;font-size:20px;line-height:1;
   color:#8a7358;font-weight:900;
 }
-@media (max-height:520px){ .gh-pop{margin-top:8px;padding:10px 14px 10px} .gh-pop p{font-size:11px;margin:6px 0 8px} }
+@media (max-height:520px){
+  .gh-pop{padding:12px 16px 12px;width:min(94vw,420px)}
+  .gh-pop p{font-size:11.5px;margin:6px 0 10px;line-height:1.6}
+  .gh-title{font-size:14px}
+  .gh-btn{padding:9px 14px;font-size:13px}
+  .gh-btn svg{width:20px;height:20px}
+}
 
 /* 手机横屏（屏幕矮）：压缩开始界面，保证按钮看得见 */
 @media (max-height:520px){

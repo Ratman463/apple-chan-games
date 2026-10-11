@@ -1294,10 +1294,13 @@ document.getElementById('btn-sound').addEventListener('click', () => Sound.toggl
 /* ---------- GitHub 求 star 弹窗 ---------- */
 const GH_URL = 'https://github.com/Ratman463/apple-chan-games';
 (function initGh() {
-  const pop = document.getElementById('gh-pop'), link = document.getElementById('gh-link'), x = document.getElementById('gh-close');
+  const pop = document.getElementById('gh-pop'), back = document.getElementById('gh-back'),
+        link = document.getElementById('gh-link'), x = document.getElementById('gh-close');
   if (!pop) return;
-  if (link) { link.href = GH_URL; link.textContent = GH_URL.replace(/^https?:\/\//, ''); }
-  if (x) x.addEventListener('click', () => pop.classList.add('hidden'));
+  if (link) link.href = GH_URL;
+  const close = () => { pop.classList.add('hidden'); if (back) back.classList.add('hidden'); };
+  if (x) x.addEventListener('click', close);
+  if (back) back.addEventListener('click', close);
 })();
 
 /* ---------- 全屏（手机端）---------- */

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>果酱大冒险 · 失窃的苹果园 · RatAPI</title>
 <meta name="description" content="果酱大冒险 第一章：失窃的苹果园 —— 横版物理解谜，推箱开门、躲仙人掌、丢苹果打苦力怕">
-<link rel="stylesheet" href="adventure.css?v=77">
+<link rel="stylesheet" href="adventure.css?v=78">
 </head>
 <body>
 <div id="app">
@@ -32,11 +32,15 @@
         <button id="btn-play" class="btn primary">进入果园</button>
       </div>
 
+      <div id="gh-back" class="gh-back"></div>
       <div id="gh-pop" class="gh-pop">
         <button id="gh-close" class="gh-x" aria-label="关闭">×</button>
         <div class="gh-title">⭐ 喜欢的话，点个 star 吧</div>
         <p>这是一个 <b>果酱（apple-chan）的粉丝向作品</b>。<br>代码开源在 GitHub，喜欢的话请去点一个 star ✨</p>
-        <a id="gh-link" class="gh-btn" href="#" target="_blank" rel="noopener">github</a>
+        <a id="gh-link" class="gh-btn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          <span>GitHub</span>
+        </a>
       </div>
     </div>
   </section>
@@ -50,8 +54,8 @@
       <div class="hud">
         <div class="hud-left">
           <div id="hud-hearts" class="hearts"></div>
-          <div id="hud-apples" class="pill"><img class="pillicon" src="/assets/mc2/apple.png?v=77" alt="">× 4</div>
-          <div id="hud-gold" class="pill goldpill"><img class="pillicon" src="/assets/mc2/gapple.png?v=77" alt="">0</div>
+          <div id="hud-apples" class="pill"><img class="pillicon" src="/assets/mc2/apple.png?v=78" alt="">× 4</div>
+          <div id="hud-gold" class="pill goldpill"><img class="pillicon" src="/assets/mc2/gapple.png?v=78" alt="">0</div>
         </div>
         <div class="hud-right">
           <button id="btn-fs" class="pill btnpill" aria-label="全屏">⛶</button>
@@ -99,12 +103,12 @@
     <button id="btn-jump" class="act-btn jump" aria-label="跳跃">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3.5 14H9v8h6v-8h5.5z"/></svg>
     </button>
-    <button id="btn-gold" class="act-btn goldbtn" aria-label="丢金苹果"><img src="/assets/mc2/gapple.png?v=77" alt="" style="width:52px;height:52px;image-rendering:pixelated"></button>
-    <button id="btn-throw" class="act-btn throw" aria-label="丢苹果"><img src="/assets/mc2/apple.png?v=77" alt="" style="width:52px;height:52px;image-rendering:pixelated"></button>
+    <button id="btn-gold" class="act-btn goldbtn" aria-label="丢金苹果"><img src="/assets/mc2/gapple.png?v=78" alt="" style="width:52px;height:52px;image-rendering:pixelated"></button>
+    <button id="btn-throw" class="act-btn throw" aria-label="丢苹果"><img src="/assets/mc2/apple.png?v=78" alt="" style="width:52px;height:52px;image-rendering:pixelated"></button>
   </section>
 
   <div id="rotate-hint" class="rotate-hint"><div class="rot">📱</div><p>请横屏游玩</p></div>
 </div>
-<script src="adventure.js?v=77"></script>
+<script src="adventure.js?v=78"></script>
 </body>
 </html>
