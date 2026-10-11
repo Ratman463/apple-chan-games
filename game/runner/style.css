@@ -177,6 +177,8 @@ kbd{background:#6f5f4b;color:#fff;border:2px solid #4d4033;padding:1px 7px;font-
 /* ---- 移动端横屏布局 ---- */
 @media (hover:none) and (pointer:coarse){
   .touch-controls{display:flex}
+  .touch-btn{opacity:.38;transition:opacity .12s ease}   /* 半透明，不挡视线 */
+  .touch-btn:active{opacity:.95}
   body.in-game .game-shell{display:flex;align-items:center;justify-content:center;min-height:100vh;min-height:100dvh;padding:0;max-width:100%}
   #game{width:min(100vw,177.78vh);width:min(100vw,177.78dvh);height:auto;margin:0 auto;border:0;box-shadow:none}
   body.in-game{background:#cfe6f2}

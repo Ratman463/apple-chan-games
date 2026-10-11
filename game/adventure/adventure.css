@@ -229,11 +229,15 @@ html:fullscreen body,html:-webkit-full-screen body{height:100%;overflow:hidden}
 /* ---------- 移动端 ---------- */
 @media (hover:none) and (pointer:coarse){
   .joy{display:block}
-  .act-btn{display:flex;width:84px;height:84px;font-size:36px}
+  .act-btn{display:flex;width:84px;height:84px;font-size:36px;
+    opacity:.38;transition:opacity .12s ease}          /* 半透明，不挡视线 */
+  .act-btn:active{opacity:.95}
   .act-btn svg{width:40px;height:40px}
+  .act-btn img{opacity:.9}
   .act-btn.throw{right:114px;bottom:30px}
   .act-btn.jump{right:22px;bottom:30px}
-  .joy{width:132px;height:132px;left:22px;bottom:22px}
+  .joy{width:132px;height:132px;left:22px;bottom:22px;opacity:.5}
+  .joy:active{opacity:.9}
   .joy-knob{width:56px;height:56px;margin:-28px 0 0 -28px}
   .heart{width:19px;height:19px}
   .pill{font-size:11px;padding:4px 8px;border-width:2px}

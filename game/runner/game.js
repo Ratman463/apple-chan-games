@@ -1062,6 +1062,15 @@ function enterGameFullscreen() {
 }
 window.__FS = { toggle: toggleFullscreen, sync: syncFsButtons };
 
+// 手机端：第一次点屏幕就自动进全屏（全屏必须由用户手势触发）
+let fsAutoTried = false;
+document.addEventListener('pointerdown', () => {
+  if (fsAutoTried || document.fullscreenElement || document.webkitFullscreenElement) return;
+  fsAutoTried = true;
+  const coarse = window.matchMedia && window.matchMedia('(hover:none) and (pointer:coarse)').matches;
+  if (coarse) toggleFullscreen();
+}, true);
+
 /* 输入 */
 function doJump() { if (game.state === 'playing') game.player.jump(); }
 function doChargeStart() { if (game.state === 'playing') game.player.startCharge(); }

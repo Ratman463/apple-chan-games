@@ -1331,6 +1331,13 @@ for (const id of ['btn-fs', 'btn-fs-home']) {
   if (el) el.addEventListener('click', () => FS.toggle());
 }
 const IS_TOUCH = () => window.matchMedia && window.matchMedia('(hover:none) and (pointer:coarse)').matches;
+// 手机端：第一次点屏幕就自动进全屏（全屏必须由用户手势触发，所以挂在第一次 pointerdown 上）
+let fsAutoTried = false;
+document.addEventListener('pointerdown', () => {
+  if (fsAutoTried || FS.on) return;
+  fsAutoTried = true;
+  if (IS_TOUCH()) FS.toggle();
+}, true);
 
 function startGame() {
   UI.show('game'); UI.hideOver();
