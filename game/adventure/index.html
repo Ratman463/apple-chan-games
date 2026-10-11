@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>果酱大冒险 · 失窃的苹果园 · RatAPI</title>
+<meta name="description" content="果酱大冒险 第一章：失窃的苹果园 —— 横版物理解谜，推箱开门、躲仙人掌、丢苹果打苦力怕">
+<link rel="stylesheet" href="adventure.css?v=69">
+</head>
+<body>
+<div id="app">
+
+  <!-- 开始界面 -->
+  <section id="screen-home" class="screen active">
+    <button id="btn-fs-home" class="snd-btn fs-btn" aria-label="全屏">⛶</button>
+    <button id="btn-sound" class="snd-btn" aria-label="声音开关"></button>
+    <div class="home">
+      <a class="back" href="../">← 返回游戏厅</a>
+      <p class="chapter">第一章</p>
+      <h1>失窃的苹果园</h1>
+      <p class="note">This is a fan-made game of apple-chan.</p>
+
+      <div class="story">
+        <p>清晨的雾还没散，果酱推开<b>仓库的木门</b>——</p>
+        <p>架子上空了，<b>一颗都没给她剩下</b>。</p>
+        <p>门口的泥地上，有一串脚印，一直通到村外的果园里。</p>
+        <p class="say">「……我的苹果。」</p>
+        <p class="say">「（没关系的。我自己，找回来就好。）」</p>
+      </div>
+
+      <div class="home-card">
+        <button id="btn-play" class="btn primary">进入果园</button>
+      </div>
+
+      <div id="gh-pop" class="gh-pop">
+        <button id="gh-close" class="gh-x" aria-label="关闭">×</button>
+        <div class="gh-title">⭐ 喜欢的话，点个 star 吧</div>
+        <p>这是一个 <b>果酱（apple-chan）的粉丝向作品</b>。<br>代码开源在 GitHub，喜欢的话请去点一个 star ✨</p>
+        <a id="gh-link" class="gh-btn" href="#" target="_blank" rel="noopener">github</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 游戏界面 -->
+  <section id="screen-game" class="screen">
+    <div class="stage">
+     <div class="frame">
+      <canvas id="game" width="960" height="600"></canvas>
+
+      <div class="hud">
+        <div class="hud-left">
+          <div id="hud-hearts" class="hearts"></div>
+          <div id="hud-apples" class="pill"><img class="pillicon" src="/assets/mc2/apple.png?v=69" alt="">× 4</div>
+          <div id="hud-gold" class="pill goldpill"><img class="pillicon" src="/assets/mc2/gapple.png?v=69" alt="">0</div>
+        </div>
+        <div class="hud-right">
+          <button id="btn-fs" class="pill btnpill" aria-label="全屏">⛶</button>
+          <button id="btn-pause" class="pill btnpill">⏸</button>
+        </div>
+      </div>
+
+      <!-- Boss 血条 -->
+      <div id="bossbar" class="bossbar hidden">
+        <div class="bossbar-name">😾 偷苹果的大猫</div>
+        <div class="bossbar-track"><div id="bossbar-fill" class="bossbar-fill"></div></div>
+      </div>
+
+      <div id="toast" class="toast hidden"></div>
+
+      <!-- 果酱受伤：哭哭气泡 -->
+      <div id="bubble" class="bubble hidden"><img src="/assets/cry.gif" alt=""></div>
+
+      <!-- 剧情对话框 -->
+      <div id="dialog" class="dialog hidden">
+        <div id="dlg-who" class="dlg-who">果酱</div>
+        <div id="dlg-text" class="dlg-text"></div>
+        <div class="dlg-tip">点击 / 空格 继续 ▸</div>
+      </div>
+
+      <div id="overlay-pause" class="overlay hidden">
+        <div class="panel">
+          <h2>已暂停</h2>
+          <button id="btn-resume" class="btn primary">继续</button>
+          <button id="btn-quit" class="btn ghost">回到游戏厅</button>
+        </div>
+      </div>
+
+      <div id="overlay-over" class="overlay hidden">
+        <div class="panel">
+          <img id="over-sticker" class="sticker" src="/assets/cry.gif" alt="">
+          <button id="btn-again" class="btn primary">再试一次</button>
+          <button id="btn-home" class="btn ghost">回到游戏厅</button>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <div id="joy" class="joy"><div class="joy-ring"></div><div id="joy-knob" class="joy-knob"></div></div>
+    <button id="btn-jump" class="act-btn jump" aria-label="跳跃">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3.5 14H9v8h6v-8h5.5z"/></svg>
+    </button>
+    <button id="btn-gold" class="act-btn goldbtn" aria-label="丢金苹果"><img src="/assets/mc2/gapple.png?v=69" alt="" style="width:52px;height:52px;image-rendering:pixelated"></button>
+    <button id="btn-throw" class="act-btn throw" aria-label="丢苹果"><img src="/assets/mc2/apple.png?v=69" alt="" style="width:52px;height:52px;image-rendering:pixelated"></button>
+  </section>
+
+  <div id="rotate-hint" class="rotate-hint"><div class="rot">📱</div><p>请横屏游玩</p></div>
+</div>
+<script src="adventure.js?v=69"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>果酱跑酷 · RatAPI</title>
+<meta name="description" content="果酱跑酷 - 丢苹果、打史莱姆、吃金币的休闲跑酷游戏">
+<link rel="stylesheet" href="style.css?v=27">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ Dashboard / 开始界面 ============ -->
+  <section id="screen-home" class="screen active">
+    <button id="btn-fs-home" class="sound-btn sound-home fs-home" aria-label="全屏">⛶</button>
+    <button id="btn-sound-home" class="sound-btn sound-home" aria-label="声音开关"></button>
+    <div class="home-wrap">
+      <div class="hero">
+        <h1>果酱跑酷</h1>
+        <p class="fan-note">This is a fan-made game of apple-chan.</p>
+      </div>
+
+      <div class="home-grid">
+        <div class="card char-card">
+          <div class="char-frame"><img id="char-img" src="/assets/applechan-game.png?v=27" alt="果酱"></div>
+          <div class="char-cap">果酱 · Apple-chan</div>
+        </div>
+
+        <div class="card play-card">
+          <label class="field">
+            <span>你的昵称</span>
+            <input id="input-name" maxlength="12" placeholder="输入昵称后开始" autocomplete="off">
+          </label>
+          <button id="btn-play" class="btn btn-primary">开始游戏</button>
+          <div class="controls-hint">
+            <div><kbd>空格</kbd> / <kbd>↑</kbd> 跳跃（可二段跳）</div>
+            <div><kbd>J</kbd> / <kbd>↓</kbd> 按住蓄力 · 松开丢苹果</div>
+            <div><kbd>P</kbd> 暂停 · 手机端有触控按钮</div>
+          </div>
+        </div>
+
+        <div class="card board-card">
+          <div class="board-head">
+            <h3>排行榜</h3>
+            <button id="btn-refresh" class="btn btn-ghost btn-sm">刷新</button>
+          </div>
+          <ol id="leaderboard" class="leaderboard"><li class="empty">加载中…</li></ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 游戏界面 ============ -->
+  <section id="screen-game" class="screen">
+    <div class="game-shell">
+      <canvas id="game" width="1280" height="720"></canvas>
+
+      <!-- 撞到苦力怕时，果酱头上的哭哭气泡 -->
+      <div id="bubble" class="bubble hidden"><img src="/assets/cry.gif" alt=""></div>
+
+      <!-- HUD -->
+      <div class="hud">
+        <div class="hud-left">
+          <div id="hud-hearts" class="hearts"></div>
+          <div id="hud-ammo" class="ammo">🍎 × 5</div>
+        </div>
+        <div class="hud-right">
+          <div class="hud-stat"><span id="hud-score">0</span><small>分数</small></div>
+          <div class="hud-stat"><span id="hud-coins">0</span><small>金币</small></div>
+          <button id="btn-fs" class="sound-btn" aria-label="全屏" style="margin-right:48px">⛶</button>
+          <button id="btn-sound" class="sound-btn" aria-label="声音开关"></button>
+        </div>
+      </div>
+
+      <!-- 暂停层 -->
+      <div id="overlay-pause" class="overlay hidden">
+        <div class="panel">
+          <h2>已暂停</h2>
+          <button id="btn-resume" class="btn btn-primary">继续</button>
+          <button id="btn-quit" class="btn btn-ghost">回到首页</button>
+        </div>
+      </div>
+
+      <!-- 结束层 -->
+      <div id="overlay-over" class="overlay hidden">
+        <div class="panel">
+          <img id="over-sticker" class="over-sticker" src="/assets/win.gif" alt="">
+          <h2 id="over-title">游戏结束</h2>
+          <div class="final-score"><span id="over-score">0</span><small>分</small></div>
+          <div id="over-sub" class="over-sub"></div>
+          <button id="btn-again" class="btn btn-primary">再玩一次</button>
+          <button id="btn-home" class="btn btn-ghost">回到首页</button>
+        </div>
+      </div>
+
+      <!-- 手机触控（底部 / 纯图标，无文字） -->
+      <div class="touch-controls">
+        <button id="t-throw" class="touch-btn" aria-label="丢苹果">🍎</button>
+        <button id="t-jump" class="touch-btn" aria-label="跳跃">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3.5 14H9v8h6v-8h5.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 竖屏提示 -->
+  <div id="rotate-hint" class="rotate-hint">
+    <div class="rot-phone">📱</div>
+    <p>请横屏游玩</p>
+  </div>
+
+</div>
+<script src="game.js?v=27"></script>
+</body>
+</html>
