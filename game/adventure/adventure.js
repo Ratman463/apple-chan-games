@@ -1299,8 +1299,11 @@ const GH_URL = 'https://github.com/Ratman463/apple-chan-games';
   if (!pop) return;
   if (link) link.href = GH_URL;
   const close = () => { pop.classList.add('hidden'); if (back) back.classList.add('hidden'); };
-  if (x) x.addEventListener('click', close);
-  if (back) back.addEventListener('click', close);
+  if (x) {
+    x.addEventListener('click', close);
+    x.addEventListener('pointerup', close);          // 手机浏览器上更稳（Edge / 部分安卓）
+  }
+  if (back) { back.addEventListener('click', close); back.addEventListener('pointerup', close); }
 })();
 
 /* ---------- 全屏（手机端）---------- */
@@ -1334,10 +1337,13 @@ for (const id of ['btn-fs', 'btn-fs-home']) {
   if (el) el.addEventListener('click', () => FS.toggle());
 }
 const IS_TOUCH = () => window.matchMedia && window.matchMedia('(hover:none) and (pointer:coarse)').matches;
-// 手机端：第一次点屏幕就自动进全屏（全屏必须由用户手势触发，所以挂在第一次 pointerdown 上）
+// 手机端：第一次点屏幕就自动进全屏（全屏必须由用户手势触发）
+// 注意：点弹窗 / 按钮 / 链接时不抢全屏，否则会把这次点击吞掉（Edge 手机上关不掉弹窗就是这个原因）
 let fsAutoTried = false;
-document.addEventListener('pointerdown', () => {
+document.addEventListener('pointerdown', (ev) => {
   if (fsAutoTried || FS.on) return;
+  const t = ev.target;
+  if (t && t.closest && t.closest('#gh-pop, #gh-back, a, button')) return;
   fsAutoTried = true;
   if (IS_TOUCH()) FS.toggle();
 }, true);
